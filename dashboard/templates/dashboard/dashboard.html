@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    {% load static %}
+    <style>
+        /* Basic styles for the page */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .navbar {
+            background-color: black;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar .logo img {
+            height: 40px;
+        }
+        .navbar .search-bar input {
+            padding: 5px;
+        }
+        .navbar .search-bar button {
+            padding: 5px;
+        }
+        .navbar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        .navbar ul li {
+            margin-left: 20px;
+        }
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        .content {
+            flex: 1;
+            display: flex;
+            padding: 20px;
+        }
+        .sidebar {
+            width: 20%;
+            padding: 20px;
+            background-color: #a5e5ec;
+            margin-right: 20px;
+        }
+        .main-content {
+            width: 75%;
+            padding: 20px;
+            background-color: #fff;
+        }
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+        .widget {
+            margin-bottom: 20px;
+        }
+        .widget h3 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<div class="navbar">
+    <div class="logo">
+        <img src="{% static 'images/youtube.png' %}" alt="Logo">
+    </div>
+    <div class="search-bar">
+        <form method="post" action="#">
+            {% csrf_token %}
+            <input type="text" placeholder="Search...">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <ul>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+        <li><a href="{% url 'messaging_overview' %}">Messages</a></li>
+        <li><a href="#">Documents</a></li>
+        <li><a href="#">Tasks</a></li>
+        <li><a href="#">Calendar</a></li>
+        <li><a href="#">Knowledge Base</a></li>
+        <li><a href="#">Integrations</a></li>
+        <li><a href="#">Profile Settings</a></li>
+        <li><a href="{% url 'logout' %}">Logout</a></li>
+    </ul>
+</div>
+
+<!-- Main Content -->
+<div class="content">
+    <div class="sidebar">
+        <!-- Profile Overview -->
+        <div class="widget">
+            <h3>User Profile</h3>
+            <img src="{% static 'profile_pic.png' %}" alt="Profile Picture" style="width:100px;">
+            <p>{{ user.username }}</p>
+            <a href="#">Profile Settings</a>
+        </div>
+        <!-- Quick Access Widgets -->
+        <div class="widget">
+            <h3>Quick Access</h3>
+            <p><a href="#">Recent Documents</a></p>
+            <p><a href="#">Upcoming Meetings</a></p>
+            <p><a href="#">Frequently Accessed Resources</a></p>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <!-- Dashboard Content -->
+        <div class="widget">
+            <h3>Recent Activities</h3>
+            <ul>
+                {% for activity in activities %}
+                <li>
+                    <span>{{ activity.activity_type }}</span>: {{ activity.description }} ({{ activity.timestamp }})
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="widget">
+            <h3>Assigned Tasks</h3>
+            <ul>
+                {% for task in tasks %}
+                <li>
+                    <span>{{ task.title }}</span>: {{ task.description }} (Due: {{ task.deadline }})
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <!-- <div class="widget">
+            <h3>Notifications</h3>
+            <ul>
+                {% for notification in notifications %}
+                <li>
+                    {{ notification.message }} ({{ notification.timestamp }})
+                </li>
+                {% endfor %}
+            </ul>
+        </div> -->
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="copyright">
+        &copy; {% now "Y" %} Your Company. All rights reserved.
+    </div>
+</footer>
+
+</body>
+</html>

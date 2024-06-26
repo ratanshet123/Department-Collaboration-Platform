@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Messages</title>
+    <style>
+        /* Basic styles for the page */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .content {
+            display: flex;
+            padding: 20px;
+            width: 100%;
+        }
+        .inbox, .sent, .new-message {
+            width: 30%;
+            margin: 0 10px;
+        }
+        .widget {
+            margin-bottom: 20px;
+        }
+        .widget h3 {
+            margin-top: 0;
+        }
+        .widget ul {
+            list-style: none;
+            padding: 0;
+        }
+        .widget ul li {
+            background: #fff;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+<div class="content">
+    <!-- Inbox Messages -->
+    <div class="widget inbox">
+        <h3>Inbox</h3>
+        <ul>
+            {% for message in inbox_messages %}
+            <li>
+                <strong>From:</strong> {{ message.sender.username }}<br>
+                <strong>Message:</strong> {{ message.content }}<br>
+                <em>{{ message.timestamp }}</em>
+            </li>
+            {% empty %}
+            <li>No messages found.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Sent Messages -->
+    <div class="widget sent">
+        <h3>Sent Messages</h3>
+        <ul>
+            {% for message in sent_messages %}
+            <li>
+                <strong>To:</strong> {{ message.receiver.username }}<br>
+                <strong>Message:</strong> {{ message.content }}<br>
+                <em>{{ message.timestamp }}</em>
+            </li>
+            {% empty %}
+            <li>No sent messages found.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Send New Message -->
+    <div class="widget new-message">
+        <h3>Send a New Message</h3>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Send</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

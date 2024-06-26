@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Department Collaboration Platform</title>
+    {% load static %}
+    <style>
+        /* Basic styles for the page */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .navbar {
+            background-color: black;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar .logo img {
+            height: 40px;
+        }
+        .navbar .search-bar input {
+            padding: 5px;
+        }
+        .navbar .search-bar button {
+            padding: 5px;
+        }
+        .navbar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        .navbar ul li {
+            margin-left: 20px;
+        }
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        .content {
+            flex: 1;
+            display: flex;
+            padding: 20px;
+        }
+        .sidebar {
+            width: 20%;
+            padding: 20px;
+            background-color: #a5e5ec;
+            margin-right: 20px;
+        }
+        .main-content {
+            width: 75%;
+            padding: 20px;
+            background-color: #fff;
+        }
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: auto;
+        }
+        .widget {
+            margin-bottom: 20px;
+        }
+        .widget h3 {
+            margin-top: 0;
+        }
+        .para {
+            text-align: justify;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<div class="navbar">
+    <div class="logo">
+        <img src="{% static 'images/youtube.png' %}" alt="Logo">
+    </div>
+    <div class="search-bar">
+        <input type="text" placeholder="Search...">
+        <button type="submit">Search</button>
+    </div>
+    <ul>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+        <li><a href="{% url 'messaging_overview' %}">Messages</a></li>
+        <li><a href="#">Documents</a></li>
+        <li><a href="#">Tasks</a></li>
+        <li><a href="#">Calendar</a></li>
+        <li><a href="#">Knowledge Base</a></li>
+        <li><a href="#">Integrations</a></li>
+        <li><a href="{% url 'login' %}">Logout</a></li>
+    </ul>
+</div>
+
+<!-- Main Content -->
+<div class="content">
+    <div class="sidebar">
+        <!-- Profile Overview -->
+        <div class="widget">
+            <h3>User Profile</h3>
+            <img src="{% static 'images/profile_pic.png' %}" alt="Profile Picture" style="width:100px;">
+            <p>{{ user.username }}</p>
+            <a href="#">Profile Settings</a>
+        </div>
+        <!-- Quick Access Widgets -->
+        <div class="widget">
+            <h3>Quick Access</h3>
+            <p><a href="#">Recent Documents</a></p>
+            <p><a href="#">Upcoming Meetings</a></p>
+            <p><a href="#">Frequently Accessed Resources</a></p>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <!-- Welcome Message and Announcements -->
+        <div class="widget">
+            <h1>Welcome to UniCon</h1>
+            <p class="para">Welcome to UniCon, your all-in-one solution for enhancing communication, 
+                streamlining workflows, and fostering a collaborative environment among faculty members.
+                This platform is designed to bring together essential tools and resources in a unified,
+                easy-to-use interface, ensuring that you can focus on what truly matters – teaching, research, and innovation.</p>
+            <p>Announcements or important updates.</p>
+        </div>
+        <!-- Dashboard -->
+        <div class="widget">
+            <h3>Dashboard</h3>
+            <p>Summary of recent activities and updates.</p>
+            <p>Overview of assigned tasks and upcoming deadlines.</p>
+            <p>Notifications and alerts.</p>
+        </div>
+        <!-- Announcements and News Feed -->
+        <div class="widget">
+            <h3>Announcements and News</h3>
+            <p>Departmental announcements and news.</p>
+            <p>Faculty updates and important notices.</p>
+        </div>
+        <!-- Task and Project Summary -->
+        <div class="widget">
+            <h3>Tasks and Projects</h3>
+            <p>Snapshot of active projects.</p>
+            <p>Quick links to task details and project tracking.</p>
+        </div>
+        <!-- Calendar Overview -->
+        <div class="widget">
+            <h3>Calendar</h3>
+            <p>Mini calendar showing upcoming events and deadlines.</p>
+            <a href="#">View detailed calendar</a>
+        </div>
+        <!-- Message Center -->
+        <div class="widget">
+            <h3>Message Center</h3>
+            <p>Preview of recent messages and chats.</p>
+            <a href="#">Go to Messaging</a>
+        </div>
+        <!-- Resource Center Highlights -->
+        <div class="widget">
+            <h3>Resource Center</h3>
+            <p>Links to key resources and knowledge base articles.</p>
+            <p>Featured FAQs and instructional guides.</p>
+        </div>
+        <!-- Integration Shortcuts -->
+        <div class="widget">
+            <h3>Integrations</h3>
+            <p>Quick access to integrated third-party tools.</p>
+            <p>Links to connected services (Google Drive, Dropbox, LMS, etc.).</p>
+        </div>
+        <!-- Support and Help -->
+        <div class="widget">
+            <h3>Support and Help</h3>
+            <p>Links to help documentation and user guides.</p>
+            <p>Contact information for technical support and assistance.</p>
+        </div>
+        <!-- Customization Options -->
+        <div class="widget">
+            <h3>Customization</h3>
+            <p>Widgets and sections that users can personalize based on their preferences.</p>
+            <p>Options to rearrange or hide certain elements on the home page.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="copyright">
+        &copy; {% now "Y" %} Your Company. All rights reserved.
+    </div>
+</footer>
+
+</body>
+</html>

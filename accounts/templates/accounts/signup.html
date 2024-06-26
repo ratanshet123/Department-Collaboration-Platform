@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Signup</title>
+    {% load static %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .signup-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 350px;
+        }
+        .signup-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .signup-container label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .signup-container input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .signup-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            box-sizing: border-box;
+        }
+        .signup-container button:hover {
+            background-color: #218838;
+        }
+        .signup-container p {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .signup-container a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .signup-container a:hover {
+            text-decoration: underline;
+        }
+        .error-message {
+            color: red;
+            text-align: center;
+            margin-top: 10px;
+        }
+        .success-message {
+            color: green;
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <h2>Signup</h2>
+        <form method="post">
+            {% csrf_token %}
+            <!-- Username -->
+            <label for="id_username">Username:</label>
+            {{ form.username }}
+            {{ form.username.errors }}
+            
+            <!-- Password -->
+            <label for="id_password1">Password:</label>
+            {{ form.password1 }}
+            {{ form.password1.errors }}
+            
+            <!-- Confirm Password -->
+            <label for="id_password2">Confirm Password:</label>
+            {{ form.password2 }}
+            {{ form.password2.errors }}
+            
+            <button type="submit">Sign Up</button>
+        </form>
+        
+        <!-- Error Messages -->
+        {% if form.errors %}
+            <div class="error-message">
+                <strong>There was an error with your submission. Please try again.</strong>
+            </div>
+        {% endif %}
+        
+        <!-- Success Messages -->
+        {% if messages %}
+            {% for message in messages %}
+                <div class="success-message">
+                    <strong>{{ message }}</strong>
+                </div>
+            {% endfor %}
+        {% endif %}
+        
+        <!-- Link to Login Page -->
+        <p>Already have an account? <a href="{% url 'login' %}">Log In</a></p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Login</title>
+    {% load static %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 350px;
+        }
+        .login-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .login-container label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .login-container input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* Ensure padding is included in width */
+        }
+        .login-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            box-sizing: border-box; /* Ensure padding is included in width */
+        }
+        .login-container button:hover {
+            background-color: #0056b3;
+        }
+        .login-container p {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .login-container a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .login-container a:hover {
+            text-decoration: underline;
+        }
+        .error-message {
+            color: red;
+            text-align: center;
+            margin-top: 10px;
+        }
+        .success-message {
+            color: green;
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form method="post">
+            {% csrf_token %}
+            <!-- Username -->
+            <label for="id_username">Username:</label>
+            {{ form.username }}
+            {{ form.username.errors }}
+            
+            <!-- Password -->
+            <label for="id_password">Password:</label>
+            {{ form.password }}
+            {{ form.password.errors }}
+            
+            <button type="submit">Log In</button>
+        </form>
+        
+        <!-- Error Messages -->
+        {% if form.errors %}
+            <div class="error-message">
+                <strong>Invalid username or password. Please try again.</strong>
+            </div>
+        {% endif %}
+        
+        <!-- Success Messages -->
+        {% if messages %}
+            {% for message in messages %}
+                <div class="success-message">
+                    <strong>{{ message }}</strong>
+                </div>
+            {% endfor %}
+        {% endif %}
+        
+        <!-- Link to Signup Page -->
+        <p>Don't have an account? <a href="{% url 'signup' %}">Sign Up</a></p>
+    </div>
+</body>
+</html>
