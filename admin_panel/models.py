@@ -1,7 +1,9 @@
-# admin_panel/models.py
-
 from django.db import models
 from django.contrib.auth.models import User
+
+# Function to get the default user
+def get_default_user():
+    return User.objects.get(username='default_user').id
 
 class Notification(models.Model):
     sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='sent_notifications')

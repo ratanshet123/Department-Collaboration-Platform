@@ -144,16 +144,18 @@
                 {% endfor %}
             </ul>
         </div>
-        <!-- <div class="widget">
+        <div class="widget">
             <h3>Notifications</h3>
             <ul>
                 {% for notification in notifications %}
                 <li>
                     {{ notification.message }} ({{ notification.timestamp }})
                 </li>
+                {% empty %}
+                <li>No notifications</li>
                 {% endfor %}
             </ul>
-        </div> -->
+        </div>
     </div>
 </div>
 

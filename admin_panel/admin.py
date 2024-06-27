@@ -1,15 +1,7 @@
-# admin_panel/admin.py
-
 from django.contrib import admin
 from .models import Task, Notification
-# from django.contrib.admin import AdminSite
-
-# class CustomAdminSite(AdminSite):
-#     site_header = 'UniCon'
-#     site_title = 'Admin Portal'
-
-# admin.site = CustomAdminSite()
-
+from django.contrib.auth.models import User
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
 @admin.register(Task)
 class TaskAdmin(admin.ModelAdmin):
@@ -23,3 +15,10 @@ class NotificationAdmin(admin.ModelAdmin):
     list_filter = ('sender', 'receiver', 'timestamp', 'read')
     search_fields = ('message', 'sender__username', 'receiver__username')
 
+# Unregister the original User admin.
+admin.site.unregister(User)
+
+# Register the new User admin.
+@admin.register(User)
+class UserAdmin(BaseUserAdmin):
+    pass
