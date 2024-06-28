@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'dashboard',
     'admin_panel',
     'messaging',
+    'tasks',
 ]
 
 MIDDLEWARE = [
@@ -68,6 +69,7 @@ TEMPLATES = [
                     os.path.join(BASE_DIR, 'home', 'templates'),
                     os.path.join(BASE_DIR, 'messaging', 'templates'),
                     os.path.join(BASE_DIR, 'dashboard', 'templates'),
+                    os.path.join(BASE_DIR, 'tasks', 'templates'),
                  ],
         'APP_DIRS': True,
         'OPTIONS': {

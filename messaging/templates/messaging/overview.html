@@ -3,21 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <title>Messages</title>
+    {% load static %}
     <style>
         /* Basic styles for the page */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+        }
+        .navbar {
+            background-color: black;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar .logo img {
+            height: 40px;
+        }
+        .navbar .search-bar input {
+            padding: 5px;
+        }
+        .navbar .search-bar button {
+            padding: 5px;
+        }
+        .navbar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        .navbar ul li {
+            margin-left: 20px;
+        }
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
         }
         .content {
             display: flex;
             padding: 20px;
             width: 100%;
+            flex: 1;
         }
         .inbox, .sent, .new-message {
             width: 30%;
@@ -39,53 +70,90 @@
             margin-bottom: 10px;
             border: 1px solid #ddd;
         }
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            flex-shrink: 0;
+        }
     </style>
 </head>
 <body>
-
-<div class="content">
-    <!-- Inbox Messages -->
-    <div class="widget inbox">
-        <h3>Inbox</h3>
+    <div class="navbar">
+        <div class="logo">
+            <img src="{% static 'images/youtube.png' %}" alt="Logo">
+        </div>
+        <div class="search-bar">
+            <form method="post" action="#">
+                {% csrf_token %}
+                <input type="text" placeholder="Search...">
+                <button type="submit">Search</button>
+            </form>
+        </div>
         <ul>
-            {% for message in inbox_messages %}
-            <li>
-                <strong>From:</strong> {{ message.sender.username }}<br>
-                <strong>Message:</strong> {{ message.content }}<br>
-                <em>{{ message.timestamp }}</em>
-            </li>
-            {% empty %}
-            <li>No messages found.</li>
-            {% endfor %}
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+            <li><a href="{% url 'messaging_overview' %}">Messages</a></li>
+            <li><a href="#">Documents</a></li>
+            <li><a href="{% url 'task_list' %}">Tasks</a></li>
+            <li><a href="#">Calendar</a></li>
+            <li><a href="#">Knowledge Base</a></li>
+            <li><a href="#">Integrations</a></li>
+            <li><a href="#">Profile Settings</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
         </ul>
     </div>
 
-    <!-- Sent Messages -->
-    <div class="widget sent">
-        <h3>Sent Messages</h3>
-        <ul>
-            {% for message in sent_messages %}
-            <li>
-                <strong>To:</strong> {{ message.receiver.username }}<br>
-                <strong>Message:</strong> {{ message.content }}<br>
-                <em>{{ message.timestamp }}</em>
-            </li>
-            {% empty %}
-            <li>No sent messages found.</li>
-            {% endfor %}
-        </ul>
+    <div class="content">
+        <!-- Inbox Messages -->
+        <div class="widget inbox">
+            <h3>Inbox</h3>
+            <ul>
+                {% for message in inbox_messages %}
+                <li>
+                    <strong>From:</strong> {{ message.sender.username }}<br>
+                    <strong>Message:</strong> {{ message.content }}<br>
+                    <em>{{ message.timestamp }}</em>
+                </li>
+                {% empty %}
+                <li>No messages found.</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- Sent Messages -->
+        <div class="widget sent">
+            <h3>Sent Messages</h3>
+            <ul>
+                {% for message in sent_messages %}
+                <li>
+                    <strong>To:</strong> {{ message.receiver.username }}<br>
+                    <strong>Message:</strong> {{ message.content }}<br>
+                    <em>{{ message.timestamp }}</em>
+                </li>
+                {% empty %}
+                <li>No sent messages found.</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- Send New Message -->
+        <div class="widget new-message">
+            <h3>Send a New Message</h3>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Send</button>
+            </form>
+        </div>
     </div>
 
-    <!-- Send New Message -->
-    <div class="widget new-message">
-        <h3>Send a New Message</h3>
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Send</button>
-        </form>
-    </div>
-</div>
-
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="copyright">
+            &copy; {% now "Y" %} Your Company. All rights reserved.
+        </div>
+    </footer>
 </body>
 </html>

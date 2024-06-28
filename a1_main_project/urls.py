@@ -30,4 +30,5 @@ urlpatterns = [
     path('home/', home_views.home, name='home'),  
     path('dashboard/', include('dashboard.urls')),  
     path('messaging/', include('messaging.urls')),
+    path('tasks/', include('tasks.urls')),
 ]

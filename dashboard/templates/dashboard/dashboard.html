@@ -94,7 +94,7 @@
         <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
         <li><a href="{% url 'messaging_overview' %}">Messages</a></li>
         <li><a href="#">Documents</a></li>
-        <li><a href="#">Tasks</a></li>
+        <li><a href="{% url 'task_list' %}">Tasks</a></li>
         <li><a href="#">Calendar</a></li>
         <li><a href="#">Knowledge Base</a></li>
         <li><a href="#">Integrations</a></li>
@@ -124,22 +124,23 @@
 
     <div class="main-content">
         <!-- Dashboard Content -->
-        <div class="widget">
-            <h3>Recent Activities</h3>
+        <!-- <div class="widget">
+            <h3>Assigned Tasks</h3>
             <ul>
-                {% for activity in activities %}
+                {% for task in tasks %}
                 <li>
-                    <span>{{ activity.activity_type }}</span>: {{ activity.description }} ({{ activity.timestamp }})
+                    <span>{{ task.title }}</span>: {{ task.description }} (Due: {{ task.deadline }})
                 </li>
                 {% endfor %}
             </ul>
-        </div>
+        </div> -->
         <div class="widget">
             <h3>Assigned Tasks</h3>
             <ul>
                 {% for task in tasks %}
                 <li>
                     <span>{{ task.title }}</span>: {{ task.description }} (Due: {{ task.deadline }})
+                    <a href="{% url 'task_update' task.pk %}">Update</a>
                 </li>
                 {% endfor %}
             </ul>
