@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from admin_panel.models import Notification, Task
-
+from tasks.models import Task
 
 @login_required
 def dashboard_view(request):
