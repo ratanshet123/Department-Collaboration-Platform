@@ -21,6 +21,8 @@ from django.urls import path, include
 from accounts import views as accounts_views
 from home import views as home_views
 from dashboard import views as dashboard_views
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 urlpatterns = [
@@ -31,4 +33,8 @@ urlpatterns = [
     path('dashboard/', include('dashboard.urls')),  
     path('messaging/', include('messaging.urls')),
     path('tasks/', include('tasks.urls')),
+    path('documents/', include('documents.urls')),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
