@@ -2,17 +2,41 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Tasks</title>
+    <title>Task List</title>
+    {% load static %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .content {
+            padding: 20px;
+        }
+        .task {
+            background: white;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+        }
+    </style>
 </head>
 <body>
-    <h1>Your Tasks</h1>
-    <ul>
+    <div class="content">
+        <h1>Your Tasks</h1>
         {% for task in tasks %}
-        <li>
-            <strong>{{ task.title }}</strong> - {{ task.status }} - {{ task.deadline }}
-            <a href="{% url 'task_update' task.pk %}">Update</a>
-        </li>
+            <div class="task">
+                <h2>{{ task.title }}</h2>
+                <p>{{ task.description }}</p>
+                <p><strong>Deadline:</strong> {{ task.deadline }}</p>
+                <p><strong>Status:</strong> {{ task.get_status_display }}</p>
+                {% if task.document %}
+                    <p><strong>Document:</strong> <a href="{{ task.document.url }}" target="_blank">View Document</a></p>
+                {% endif %}
+                <a href="{% url 'task_update' task.pk %}">Update Task</a>
+            </div>
         {% endfor %}
-    </ul>
+    </div>
 </body>
 </html>

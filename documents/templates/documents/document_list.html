@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Documents</title>
+    {% load static %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .content {
+            padding: 20px;
+        }
+        .document {
+            background: white;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+        }
+        .upload-form {
+            margin-top: 20px;
+            padding: 10px;
+            background: #fff;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>My Documents</h1>
+        <ul>
+            {% for document in documents %}
+            <li class="document">
+                <strong>{{ document.title }}</strong><br>
+                <a href="{{ document.file.url }}" target="_blank">View Document</a><br>
+                Uploaded at: {{ document.uploaded_at }}
+            </li>
+            {% empty %}
+            <li>No documents found.</li>
+            {% endfor %}
+        </ul>
+
+        <div class="upload-form">
+            <h3>Upload New Document</h3>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Upload</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
