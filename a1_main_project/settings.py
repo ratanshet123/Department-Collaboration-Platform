@@ -49,6 +49,9 @@ INSTALLED_APPS = [
     'messaging',
     'tasks',
     'documents',
+    'calendar_app',
+    'knowledge_base',
+    'integrations',
 ]
 
 MIDDLEWARE = [
@@ -74,6 +77,9 @@ TEMPLATES = [
                     os.path.join(BASE_DIR, 'messaging', 'templates'),
                     os.path.join(BASE_DIR, 'dashboard', 'templates'),
                     os.path.join(BASE_DIR, 'tasks', 'templates'),
+                    os.path.join(BASE_DIR, 'calendar_app', 'templates'),
+                    os.path.join(BASE_DIR, 'knowledge_base', 'templates'),
+                    os.path.join(BASE_DIR, 'integrations', 'templates'),
                  ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -100,8 +106,8 @@ DATABASES = {
         'NAME': 'department_collaboration1',
         'USER': 'root',
         'PASSWORD': 'root',
-        'HOST': 'localhost',  # Or your database host
-        'PORT': '3306',  # Or your database port
+        'HOST': 'localhost',  
+        'PORT': '3306',  
     }
 }
 

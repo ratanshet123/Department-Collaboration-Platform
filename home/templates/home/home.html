@@ -53,8 +53,9 @@
         .sidebar {
             width: 20%;
             padding: 20px;
-            background-color: #a5e5ec;
+            background-color: #ecd2a5;
             margin-right: 20px;
+            border: 2px solid black;
         }
         .main-content {
             width: 75%;
@@ -70,6 +71,7 @@
         }
         .widget {
             margin-bottom: 20px;
+            
         }
         .widget h3 {
             margin-top: 0;
@@ -77,6 +79,7 @@
         .para {
             text-align: justify;
         }
+       
     </style>
 </head>
 <body>
@@ -96,9 +99,9 @@
         <li><a href="{% url 'messaging_overview' %}">Messages</a></li>
         <li><a href="{% url 'document_list' %}">Documents</a></li>
         <li><a href="{% url 'task_list' %}">Tasks</a></li>
-        <li><a href="#">Calendar</a></li>
-        <li><a href="#">Knowledge Base</a></li>
-        <li><a href="#">Integrations</a></li>
+        <li><a href="{% url 'calendar_view' %}">Calendar</a></li>
+        <li><a href="{% url 'knowledge_base' %}">Knowledge Base</a></li>
+        <li><a href="{% url 'integrations' %}">Integrations</a></li>
         <li><a href="{% url 'login' %}">Logout</a></li>
     </ul>
 </div>
