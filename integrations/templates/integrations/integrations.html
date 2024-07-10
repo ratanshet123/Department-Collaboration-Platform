@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Integrations</title>
+    {% load static %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: black;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar .logo img {
+            height: 40px;
+        }
+        .navbar .search-bar input {
+            padding: 5px;
+        }
+        .navbar .search-bar button {
+            padding: 5px;
+        }
+        .navbar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        .navbar ul li {
+            margin-left: 20px;
+        }
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        .title {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .content {
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+        .integration {
+            display: inline-block;
+            margin: 20px;
+            text-align: center;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        .integration:hover {
+            transform: scale(1.05);
+        }
+        .integration img {
+            width: 100px;
+            height: 100px;
+        }
+        .integration p {
+            margin-top: 10px;
+            font-size: 16px;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="{% static 'images/youtube.png' %}" alt="Logo">
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+            <button type="submit">Search</button>
+        </div>
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+            <li><a href="{% url 'messaging_overview' %}">Messages</a></li>
+            <li><a href="{% url 'document_list' %}">Documents</a></li>
+            <li><a href="{% url 'task_list' %}">Tasks</a></li>
+            <li><a href="{% url 'calendar_view' %}">Calendar</a></li>
+            <li><a href="{% url 'knowledge_base' %}">Knowledge Base</a></li>
+            <li><a href="{% url 'integrations' %}">Integrations</a></li>
+            <li><a href="{% url 'login' %}">Logout</a></li>
+        </ul>
+    </div>
+    <div class="title">
+        <h1>Integration Tools</h1>
+    </div>
+    <div class="content">
+        <div class="integration">
+            <a href="https://zoom.us" target="_blank">
+                <img src="{% static 'integrations/zoom.png' %}" alt="Zoom">
+                <p>Zoom</p>
+            </a>
+        </div>
+        <div class="integration">
+            <a href="https://drive.google.com" target="_blank">
+                <img src="{% static 'integrations/google-drive.png' %}" alt="Google Drive">
+                <p>Google Drive</p>
+            </a>
+        </div>
+        <div class="integration">
+            <a href="https://mail.google.com" target="_blank">
+                <img src="{% static 'integrations/gmail.png' %}" alt="Gmail">
+                <p>Gmail</p>
+            </a>
+        </div>
+        <div class="integration">
+            <a href="https://chat.openai.com" target="_blank">
+                <img src="{% static 'integrations/chatgpt.png' %}" alt="ChatGPT">
+                <p>ChatGPT</p>
+            </a>
+        </div>
+        <!-- Add more integrations as needed -->
+    </div>
+</body>
+</html>

@@ -34,6 +34,9 @@ urlpatterns = [
     path('messaging/', include('messaging.urls')),
     path('tasks/', include('tasks.urls')),
     path('documents/', include('documents.urls')),
+    path('calendar/', include('calendar_app.urls')),
+    path('knowledge_base/', include('knowledge_base.urls')),
+    path('integrations/', include('integrations.urls')),
 ]
 
 if settings.DEBUG:

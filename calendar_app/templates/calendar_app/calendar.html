@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Calendar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .content {
+            padding: 20px;
+        }
+        .event {
+            background: white;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>My Calendar</h1>
+        <a href="{% url 'add_event' %}">Add New Event</a>
+        <ul>
+            {% for event in events %}
+            <li class="event">
+                <strong>{{ event.title }}</strong><br>
+                <p>{{ event.description }}</p>
+                <p>Start: {{ event.start_date }}</p>
+                <p>End: {{ event.end_date }}</p>
+                <p>Reminder: {{ event.reminder }}</p>
+                <a href="{% url 'edit_event' event.id %}">Edit Event</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
