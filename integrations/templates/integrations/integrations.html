@@ -40,6 +40,10 @@
         .navbar ul li a {
             color: white;
             text-decoration: none;
+            transition: color 0.3s;
+        }
+        .navbar ul li a:hover {
+            color: #007bff;
         }
         .title {
             text-align: center;
@@ -81,10 +85,7 @@
         <div class="logo">
             <img src="{% static 'images/youtube.png' %}" alt="Logo">
         </div>
-        <div class="search-bar">
-            <input type="text" placeholder="Search...">
-            <button type="submit">Search</button>
-        </div>
+    
         <ul>
             <li><a href="{% url 'home' %}">Home</a></li>
             <li><a href="{% url 'dashboard' %}">Dashboard</a></li>

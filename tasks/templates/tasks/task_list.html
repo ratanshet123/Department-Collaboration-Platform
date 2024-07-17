@@ -11,18 +11,114 @@
             margin: 0;
             padding: 0;
         }
+        .navbar {
+            background-color: black;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar .logo img {
+            height: 40px;
+        }
+        .navbar .search-bar input {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        .navbar .search-bar button {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .navbar .search-bar button:hover {
+            background-color: #0056b3;
+        }
+        .navbar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        .navbar ul li {
+            margin-left: 20px;
+        }
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 5px;
+            transition: color 0.3s;
+        }
+        .navbar ul li a:hover {
+            color: #007bff;
+        }
         .content {
             padding: 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+        h1 {
+            color: #333;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
         }
         .task {
             background: white;
-            padding: 10px;
-            margin-bottom: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
             border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s;
+        }
+        .task:hover {
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .task h2 {
+            margin: 0;
+            color: #007bff;
+        }
+        .task p {
+            margin: 5px 0;
+        }
+        .task a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 12px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .task a:hover {
+            background: #0056b3;
         }
     </style>
 </head>
 <body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="{% static 'images/youtube.png' %}" alt="Logo">
+        </div>
+        
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+            <li><a href="{% url 'messaging_overview' %}">Messages</a></li>
+            <li><a href="{% url 'document_list' %}">Documents</a></li>
+            <li><a href="{% url 'task_list' %}">Tasks</a></li>
+            <li><a href="{% url 'calendar_view' %}">Calendar</a></li>
+            <li><a href="{% url 'knowledge_base' %}">Knowledge Base</a></li>
+            <li><a href="{% url 'integrations' %}">Integrations</a></li>
+            <li><a href="{% url 'login' %}">Logout</a></li>
+        </ul>
+    </div>
     <div class="content">
         <h1>Your Tasks</h1>
         {% for task in tasks %}

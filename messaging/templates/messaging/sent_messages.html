@@ -3,13 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <title>Sent Messages</title>
+    {% load static %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background: #fff;
+            padding: 15px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: box-shadow 0.3s;
+        }
+        li:hover {
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        strong {
+            color: #007bff;
+        }
+        .back-link {
+            margin-top: 20px;
+            display: inline-block;
+            padding: 10px 15px;
+            background: #ccc;
+            color: #333;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .back-link:hover {
+            background: #bbb;
+        }
+    </style>
 </head>
 <body>
-    <h1>Sent Messages</h1>
-    <ul>
-        {% for message in messages %}
-        <li><strong>To {{ message.receiver }}:</strong> {{ message.content }} <em>{{ message.timestamp }}</em></li>
-        {% endfor %}
-    </ul>
+    <div class="container">
+        <h1>Sent Messages</h1>
+        <ul>
+            {% for message in messages %}
+            <li>
+                <strong>To: {{ message.receiver }}</strong><br>
+                {{ message.content }} <em>{{ message.timestamp }}</em>
+            </li>
+            {% empty %}
+            <li>No sent messages found.</li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'messaging_overview' %}" class="back-link">Back to Messages</a>
+    </div>
 </body>
 </html>

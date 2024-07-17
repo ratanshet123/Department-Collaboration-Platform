@@ -1,4 +1,6 @@
 from django.contrib import admin
+
+from knowledge_base.models import Document
 from .models import Task, Notification
 from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
@@ -17,6 +19,7 @@ class NotificationAdmin(admin.ModelAdmin):
 
 # Unregister the original User admin.
 admin.site.unregister(User)
+admin.site.register(Document)
 
 # Register the new User admin.
 @admin.register(User)

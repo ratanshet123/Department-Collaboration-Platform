@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>My Calendar</title>
+    {% load static %}
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -10,25 +11,119 @@
             margin: 0;
             padding: 0;
         }
+        .navbar {
+            background-color: black;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar .logo img {
+            height: 40px;
+        }
+        .navbar .search-bar input {
+            padding: 5px;
+            border: none;
+            border-radius: 4px;
+        }
+        .navbar .search-bar button {
+            padding: 5px;
+            border: none;
+            border-radius: 4px;
+            background-color: #555;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .navbar .search-bar button:hover {
+            background-color: #777;
+        }
+        .navbar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        .navbar ul li {
+            margin-left: 20px;
+        }
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        .navbar ul li a:hover {
+            color: #007bff;
+        }
         .content {
             padding: 20px;
         }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
         .event {
             background: white;
-            padding: 10px;
+            padding: 15px;
             margin-bottom: 10px;
             border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+        .event:hover {
+            transform: scale(1.02);
+        }
+        .event strong {
+            display: block;
+            color: #007bff;
+            font-size: 1.2em;
+        }
+        .event p {
+            margin: 5px 0;
+        }
+        .add-event {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #287dd1;
+            color: white;
+            border-radius: 4px;
+            text-decoration: none;
+            margin-bottom: 20px;
+            transition: background-color 0.3s;
+        }
+        .add-event:hover {
+            background-color: #218838;
         }
     </style>
 </head>
 <body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="{% static 'images/youtube.png' %}" alt="Logo">
+        </div>
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+            <li><a href="{% url 'messaging_overview' %}">Messages</a></li>
+            <li><a href="{% url 'document_list' %}">Documents</a></li>
+            <li><a href="{% url 'task_list' %}">Tasks</a></li>
+            <li><a href="{% url 'calendar_view' %}">Calendar</a></li>
+            <li><a href="{% url 'knowledge_base' %}">Knowledge Base</a></li>
+            <li><a href="{% url 'integrations' %}">Integrations</a></li>
+            <li><a href="{% url 'login' %}">Logout</a></li>
+        </ul>
+    </div>
     <div class="content">
         <h1>My Calendar</h1>
-        <a href="{% url 'add_event' %}">Add New Event</a>
+        <a class="add-event" href="{% url 'add_event' %}">Add New Event</a>
         <ul>
             {% for event in events %}
             <li class="event">
-                <strong>{{ event.title }}</strong><br>
+                <strong>{{ event.title }}</strong>
                 <p>{{ event.description }}</p>
                 <p>Start: {{ event.start_date }}</p>
                 <p>End: {{ event.end_date }}</p>

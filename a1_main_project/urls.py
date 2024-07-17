@@ -28,6 +28,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', accounts_views.login_view, name='login'), 
+    path('', include('accounts.urls')), 
     path('accounts/', include('accounts.urls')), 
     path('home/', home_views.home, name='home'),  
     path('dashboard/', include('dashboard.urls')),  
@@ -37,6 +38,8 @@ urlpatterns = [
     path('calendar/', include('calendar_app.urls')),
     path('knowledge_base/', include('knowledge_base.urls')),
     path('integrations/', include('integrations.urls')),
+    path('support/', include('support.urls')),
+    
 ]
 
 if settings.DEBUG:

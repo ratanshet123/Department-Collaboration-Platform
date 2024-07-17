@@ -18,7 +18,7 @@
         .navbar {
             background-color: black;
             color: white;
-            padding: 10px;
+            padding: 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -27,10 +27,21 @@
             height: 40px;
         }
         .navbar .search-bar input {
-            padding: 5px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
         }
         .navbar .search-bar button {
-            padding: 5px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .navbar .search-bar button:hover {
+            background-color: #0056b3;
         }
         .navbar ul {
             list-style: none;
@@ -44,34 +55,61 @@
         .navbar ul li a {
             color: white;
             text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        .navbar ul li a:hover {
+            color: #007bff;
         }
         .content {
             flex: 1;
             display: flex;
             padding: 20px;
-        }
-        .sidebar {
-            width: 20%;
-            padding: 20px;
-            background-color: #a5e5ec;
-            margin-right: 20px;
+            gap: 20px;
+            flex-wrap: wrap;
         }
         .main-content {
-            width: 75%;
+            flex: 1;
             padding: 20px;
             background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         .footer {
             background-color: #333;
             color: white;
             text-align: center;
             padding: 10px;
+            margin-top: auto;
         }
         .widget {
             margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #e9f7f9;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
         }
         .widget h3 {
             margin-top: 0;
+        }
+        .widget ul {
+            list-style: none;
+            padding: 0;
+        }
+        .widget ul li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .widget ul li:last-child {
+            border-bottom: none;
+        }
+        .widget ul li a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .widget ul li a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -98,53 +136,33 @@
         <li><a href="{% url 'calendar_view' %}">Calendar</a></li>
         <li><a href="{% url 'knowledge_base' %}">Knowledge Base</a></li>
         <li><a href="{% url 'integrations' %}">Integrations</a></li>
-        <li><a href="#">Profile Settings</a></li>
         <li><a href="{% url 'logout' %}">Logout</a></li>
     </ul>
 </div>
 
 <!-- Main Content -->
 <div class="content">
-    <div class="sidebar">
-        <!-- Profile Overview -->
-        <div class="widget">
-            <h3>User Profile</h3>
-            <img src="{% static 'profile_pic.png' %}" alt="Profile Picture" style="width:100px;">
-            <p>{{ user.username }}</p>
-            <a href="#">Profile Settings</a>
-        </div>
-        <!-- Quick Access Widgets -->
-        <div class="widget">
-            <h3>Quick Access</h3>
-            <p><a href="#">Recent Documents</a></p>
-            <p><a href="#">Upcoming Meetings</a></p>
-            <p><a href="#">Frequently Accessed Resources</a></p>
-        </div>
-    </div>
-
     <div class="main-content">
+        <!-- Welcome Message -->
+        <div class="widget">
+            <h3>Welcome to UniCon</h3>
+            <p>We're excited to have you here! This platform is your gateway to enhancing collaboration and driving innovation within our community.</p>
+            <p>Explore our features and make the most out of your experience!</p>
+        </div>
+
         <!-- Dashboard Content -->
-        <!-- <div class="widget">
-            <h3>Assigned Tasks</h3>
-            <ul>
-                {% for task in tasks %}
-                <li>
-                    <span>{{ task.title }}</span>: {{ task.description }} (Due: {{ task.deadline }})
-                </li>
-                {% endfor %}
-            </ul>
-        </div> -->
         <div class="widget">
             <h3>Assigned Tasks</h3>
             <ul>
                 {% for task in tasks %}
                 <li>
-                    <span>{{ task.title }}</span>: {{ task.description }} (Due: {{ task.deadline }})
+                    <strong>{{ task.title }}</strong>: {{ task.description }} (Due: {{ task.deadline }})
                     <a href="{% url 'task_update' task.pk %}">Update</a>
                 </li>
                 {% endfor %}
             </ul>
         </div>
+
         <div class="widget">
             <h3>Notifications</h3>
             <ul>
@@ -156,6 +174,25 @@
                 <li>No notifications</li>
                 {% endfor %}
             </ul>
+        </div>
+
+        <!-- Upcoming Events -->
+        <div class="widget">
+            <h3>Upcoming Events</h3>
+            <p>Don't miss out on our next events!</p>
+            <ul>
+                <li>📅 Faculty Meeting - August 10, 2024</li>
+                <li>📅 Workshop on Collaboration Tools - August 15, 2024</li>
+                <li>📅 Annual Department Retreat - August 20, 2024</li>
+            </ul>
+        </div>
+
+        <!-- Inspirational Quote -->
+        <div class="widget">
+            <h3>Inspiration Corner</h3>
+            <blockquote>
+                "Collaboration allows us to know more than we are capable of knowing ourselves." – Paul Solarz
+            </blockquote>
         </div>
     </div>
 </div>

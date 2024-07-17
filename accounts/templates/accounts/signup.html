@@ -83,6 +83,10 @@
             <label for="id_username">Username:</label>
             {{ form.username }}
             {{ form.username.errors }}
+
+            <label for="id_email">Email:</label>
+            {{ form.email }}
+            {{ form.email.errors }}
             
             <!-- Password -->
             <label for="id_password1">Password:</label>
@@ -93,7 +97,7 @@
             <label for="id_password2">Confirm Password:</label>
             {{ form.password2 }}
             {{ form.password2.errors }}
-            
+
             <button type="submit">Sign Up</button>
         </form>
         

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Upload Document</title>
+    {% load static %}
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -13,9 +14,64 @@
         .content {
             padding: 20px;
         }
+        .navbar {
+            background-color: black;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar .logo img {
+            height: 40px;
+        }
+        .navbar .search-bar input {
+            padding: 5px;
+        }
+        .navbar .search-bar button {
+            padding: 5px;
+        }
+        .navbar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        .navbar ul li {
+            margin-left: 20px;
+        }
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        .content {
+            flex: 1;
+            display: flex;
+            padding: 20px;
+        }
     </style>
 </head>
 <body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="{% static 'images/youtube.png' %}" alt="Logo">
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+            <button type="submit">Search</button>
+        </div>
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+            <li><a href="{% url 'messaging_overview' %}">Messages</a></li>
+            <li><a href="{% url 'document_list' %}">Documents</a></li>
+            <li><a href="{% url 'task_list' %}">Tasks</a></li>
+            <li><a href="{% url 'calendar_view' %}">Calendar</a></li>
+            <li><a href="{% url 'knowledge_base' %}">Knowledge Base</a></li>
+            <li><a href="{% url 'integrations' %}">Integrations</a></li>
+            <li><a href="{% url 'login' %}">Logout</a></li>
+        </ul>
+    </div>
     <div class="content">
         <h1>Upload Document</h1>
         <form method="post" enctype="multipart/form-data">

@@ -52,7 +52,18 @@ INSTALLED_APPS = [
     'calendar_app',
     'knowledge_base',
     'integrations',
+    # 'profiles',
+    'django_crontab',
+    'django_apscheduler',
+    'support',
 ]
+
+CRONJOBS = [
+    ('*/1 * * * *', 'django.core.management.call_command', ['send_notifications']),
+    ('*/1 * * * *', 'django.core.management.call_command', ['send_reminders']),
+
+]
+
 
 MIDDLEWARE = [
    'django.middleware.security.SecurityMiddleware',
@@ -80,6 +91,7 @@ TEMPLATES = [
                     os.path.join(BASE_DIR, 'calendar_app', 'templates'),
                     os.path.join(BASE_DIR, 'knowledge_base', 'templates'),
                     os.path.join(BASE_DIR, 'integrations', 'templates'),
+                    os.path.join(BASE_DIR, 'support', 'templates'),
                  ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -169,5 +181,4 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 

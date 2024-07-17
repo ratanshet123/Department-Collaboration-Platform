@@ -13,23 +13,37 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            background-color: #f4f4f4;
         }
         .navbar {
-            background-color: black;
+            background-color: #0a0000;
             color: white;
-            padding: 10px;
+            padding: 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
         .navbar .logo img {
             height: 40px;
         }
         .navbar .search-bar input {
-            padding: 5px;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            margin-right: 5px;
         }
         .navbar .search-bar button {
-            padding: 5px;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .navbar .search-bar button:hover {
+            background-color: #0056b3;
         }
         .navbar ul {
             list-style: none;
@@ -43,39 +57,82 @@
         .navbar ul li a {
             color: white;
             text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        .navbar ul li a:hover {
+            color: #007bff;
         }
         .content {
             display: flex;
             padding: 20px;
-            width: 100%;
             flex: 1;
-        }
-        .inbox, .sent, .new-message {
-            width: 30%;
-            margin: 0 10px;
+            width: 100%;
+            justify-content: space-between;
         }
         .widget {
-            margin-bottom: 20px;
+            width: 30%;
+            margin: 0 10px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px;
         }
         .widget h3 {
             margin-top: 0;
+            color: #333;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 5px;
         }
         .widget ul {
             list-style: none;
             padding: 0;
+            max-height: 300px;
+            overflow-y: auto;
         }
         .widget ul li {
-            background: #fff;
+            background: #f9f9f9;
             padding: 10px;
             margin-bottom: 10px;
             border: 1px solid #ddd;
+            border-radius: 4px;
+            transition: box-shadow 0.2s;
+        }
+        .widget ul li:hover {
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+        }
+        .widget ul li strong {
+            display: block;
+            color: #007bff;
         }
         .footer {
             background-color: #333;
             color: white;
             text-align: center;
-            padding: 10px;
+            padding: 15px;
             flex-shrink: 0;
+            margin-top: auto;
+        }
+        button {
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+        a:hover {
+            color: #0056b3;
         }
     </style>
 </head>
@@ -84,24 +141,16 @@
         <div class="logo">
             <img src="{% static 'images/youtube.png' %}" alt="Logo">
         </div>
-        <div class="search-bar">
-            <form method="post" action="#">
-                {% csrf_token %}
-                <input type="text" placeholder="Search...">
-                <button type="submit">Search</button>
-            </form>
-        </div>
         <ul>
             <li><a href="{% url 'home' %}">Home</a></li>
             <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
             <li><a href="{% url 'messaging_overview' %}">Messages</a></li>
-            <li><a href="#">Documents</a></li>
+            <li><a href="{% url 'document_list' %}">Documents</a></li>
             <li><a href="{% url 'task_list' %}">Tasks</a></li>
-            <li><a href="#">Calendar</a></li>
-            <li><a href="#">Knowledge Base</a></li>
-            <li><a href="#">Integrations</a></li>
-            <li><a href="#">Profile Settings</a></li>
-            <li><a href="{% url 'logout' %}">Logout</a></li>
+            <li><a href="{% url 'calendar_view' %}">Calendar</a></li>
+            <li><a href="{% url 'knowledge_base' %}">Knowledge Base</a></li>
+            <li><a href="{% url 'integrations' %}">Integrations</a></li>
+            <li><a href="{% url 'login' %}">Logout</a></li>
         </ul>
     </div>
 
