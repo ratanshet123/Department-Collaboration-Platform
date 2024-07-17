@@ -30,18 +30,25 @@ The Department Collaboration Platform is a comprehensive web application designe
    git clone <repository-url>
    cd Department-Collaboration-Platform
 2. Create virtual environment
+ ```bash
 python -m venv env
 source env/bin/activate  # On Windows use `env\Scripts\activate`
 
 3.Set up your database and update settings.py with your database configuration.
 
-4.python manage.py migrate
+4.
+```bash
+python manage.py migrate
 
-5.python manage.py createsuperuser
+5.```bash
+python manage.py createsuperuser
 
-6.python manage.py runserver
+6.```bash
+python manage.py runserver
 
-7.pip install django-crontab
+7.
+```bash
+pip install django-crontab
 
 8.INSTALLED_APPS = [
     ...
@@ -52,7 +59,8 @@ CRONJOBS = [
     ('*/1 * * * *', 'django.core.management.call_command', ['send_reminders']),
 ]
 
-9.python manage.py crontab add
+9.```bash
+python manage.py crontab add
 
 
 
