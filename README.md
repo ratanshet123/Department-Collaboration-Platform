@@ -1,4 +1,4 @@
-﻿# Department-Collaboration-Platform
+
 # Department Collaboration Platform
 
 ## Overview
@@ -58,7 +58,7 @@ CRONJOBS = [
 
 
 
-Acknowledgments
+#Acknowledgments
 Built with Django Framework
 Inspired by the need for efficient collaboration tools in departmental environments
 
