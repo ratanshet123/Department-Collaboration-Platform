@@ -67,9 +67,9 @@ python manage.py crontab add
 
 
 
-#Acknowledgments
-Built with Django Framework
-Inspired by the need for efficient collaboration tools in departmental environments
+## Installation
+-Built with Django Framework
+-Inspired by the need for efficient collaboration tools in departmental environments
 
 
-Feel free to modify any sections or add more information as needed!
+-Feel free to modify any sections or add more information as needed!
