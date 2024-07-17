@@ -1,11 +1,12 @@
-
-![User Login - Profile 1 - Microsoft​ Edge 17-07-2024 20_11_06](https://github.com/user-attachments/assets/c0b9e5fb-6340-4a82-b5c5-db3958afa096)
-![User Login - Profile 1 - Microsoft​ Edge 17-07-2024 20_10_59](https://github.com/user-attachments/assets/62a19659-8536-4d7c-a571-a3698e91f98a)
-![User Login - Profile 1 - Microsoft​ Edge 17-07-2024 20_10_51](https://github.com/user-attachments/assets/d26cc849-cb0a-4783-a6ed-863b86984078)
-![User Login - Profile 1 - Microsoft​ Edge 17-07-2024 20_10_33](https://github.com/user-attachments/assets/748f5894-3483-4ddd-b281-e52d92e455b7)
-![User Login - Profile 1 - Microsoft​ Edge 17-07-2024 20_10_15](https://github.com/user-attachments/assets/ff0b29f6-158a-42f0-b088-42e193dbe764)
-
 # Department Collaboration Platform
+## Images
+
+![User Login - Profile 1 - Microsoft​ Edge 17-07-2024 20_10_15](https://github.com/user-attachments/assets/ff0b29f6-158a-42f0-b088-42e193dbe764)
+![User Login - Profile 1 - Microsoft​ Edge 17-07-2024 20_10_33](https://github.com/user-attachments/assets/748f5894-3483-4ddd-b281-e52d92e455b7)
+![User Login - Profile 1 - Microsoft​ Edge 17-07-2024 20_10_51](https://github.com/user-attachments/assets/d26cc849-cb0a-4783-a6ed-863b86984078)
+![User Login - Profile 1 - Microsoft​ Edge 17-07-2024 20_10_59](https://github.com/user-attachments/assets/62a19659-8536-4d7c-a571-a3698e91f98a)
+![User Login - Profile 1 - Microsoft​ Edge 17-07-2024 20_11_06](https://github.com/user-attachments/assets/c0b9e5fb-6340-4a82-b5c5-db3958afa096)
+
 
 ## Overview
 
@@ -35,16 +36,17 @@ The Department Collaboration Platform is a comprehensive web application designe
    ```bash
    git clone <repository-url>
    cd Department-Collaboration-Platform
+   
 2. Create virtual environment
  ```bash
 python -m venv env
-source env/bin/activate  # On Windows use `env\Scripts\activate`
+source env/bin/activate0
+# On Windows use `env\Scripts\activate`
 
 
 3.Set up your database and update settings.py with your database configuration.
 
 4.
-
 python manage.py migrate
 
 5.
@@ -69,9 +71,7 @@ CRONJOBS = [
 9.
 python manage.py crontab add
 
-
-
-
+__________________________________________________________________________________________________________________________
 
 ## Installation
 -Built with Django Framework
