@@ -29,10 +29,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 SECRET_KEY = 'django-insecure-1288m_ck61%x8+&u*o17!1nw(s*=^8s5o@sffwe@4ilf%v7ajr'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['departmentCollab.herokuapp.com', 'localhost', '127.0.0.1','.vercel.app', '.now.sh']
-
+ALLOWED_HOSTS = ['localhost','*']
 
 
 # Application definition
