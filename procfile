@@ -1,1 +1,0 @@
-web: gunicorn Department Collaboartion Platform.wsgi
